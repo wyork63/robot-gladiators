@@ -5,9 +5,14 @@ var playerAttack = 10;
 // You can also log multiple values at once like this
 console.log(playerName, playerAttack, playerHealth);
 
-var enemyName = "Roborto"
+var enemyNames = ["Roborto", "Amy Android", "Robo Trumble"];
 var enemyHealth = 50;
 var enemyAttack = 12; 
+
+console.log(enemyNames)
+
+console.log(enemyNames.length)
+
 
 // Player money
 
@@ -71,4 +76,4 @@ if (confirmSkip) {
 }
 };
 
-fight ();
+// fight ();
