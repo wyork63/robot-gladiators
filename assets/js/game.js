@@ -72,26 +72,27 @@ var startGame = function() {
 // fight each enemy-robot by looping over them and fighting them one at a time
   for(var i = 0; i < enemyNames.length; i++) {
   // if player still alive keep fighting
-    if (playerHealth > 0 && i < enemyNames.length - 1) {
+    if (playerHealth > 0) {
       // ask if they finna go shopping
-      var storeConfirm = window.confirm("The fight is over, visit the store before the next round?");
-
-      // if yes take them to the store function
-      if (storeConfirm){
-      shop();
-      }
       window.alert("Welcome to Robot Gladiators! Round " + (i + 1));
       var pickedEnemyName = enemyNames [i];
       enemyHealth = 50;
       fight(pickedEnemyName);
 
       //if we're not at the last enemy in the array
-      if (i < enemyNames.length - 1) {
-        shop();
+      if (playerHealth > 0 && i < enemyNames.length - 1) {
+        var storeConfirm = window.confirm("The fight is over, visit the store before the next round?")
+
+        // if yes, take them shopping
+        if (storeConfirm) {
+          shop();
+        }
       }
     }
+    // if player is not alive, tell them to go endgame 
     else {
       window.alert('You have lost your robot in battle! Game Over!');
+      break;
     }
   }
   // after the loop ends, player is either out of health or enemies to fight so run endgame 
@@ -100,11 +101,12 @@ var startGame = function() {
 
 // function to end the entire game
 var endGame = function() {
+  window.alert("The game has now ended. Let's see how you did!");
+
   // if a player is still alive, player wins! 
   if (playerHealth > 0) {
     window.alert("Great job, you've survived the game! You now have a score of " + playerMoney + ".")
-  }
-  else {
+  } else {
   window.alert("The game has now ended. Let's see how you did!");
   }
 
@@ -114,17 +116,19 @@ var playAgainConfirm = window.confirm("Would you like to play again?")
   if (playAgainConfirm) {
     //restart the game
     startGame();
-  }
-  else {
+  } else {
     window.alert("Thank you for playing Robot Gladiators! Come back soon!");  
   }
 };
 
+
+// go shopping between battles
 var shop = function() {
   // ask what theyd like to do 
   var shopOptionPrompt = window.prompt(
     "Would you like to REFILL your health, UPGRADE your attack, or LEAVE the store? Please enter one: 'REFILL', 'UPGRADE', or 'LEAVE' to make a choice." 
   );
+  
     // use switch to carry out action
     switch (shopOptionPrompt) {
       case "REFILL":
